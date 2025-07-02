@@ -1,14 +1,14 @@
 #!/bin/bash
-
+# awk sed
 jq -r '
   .name as $name |
   .height as $height |
   .weight as $weight |
   .types[0].type.name as $type |
-  ($name | ascii_upcase[0:1] + .[1:]) as $cap_name |
-  ($type | ascii_upcase[0:1] + .[1:]) as $cap_type |
-  ($height / 10) as $meters |
-  ($weight / 10) as $kg |
-  "\($cap_name) is of type \($cap_type), weighs \($kg)kg, and is \($meters)m tall."
+  ($name | ascii_upcase[0:1] + .[1:]) as $name |
+  ($type | ascii_upcase[0:1] + .[1:]) as $type |
+  ($height / 10) as $formatted_height |
+  ($weight / 10) as $formatted_weight |
+  "\($name) is of type \($type), weighs \($formatted_weight)kg, and is \($formatted_height)m tall."
 ' data.json
 

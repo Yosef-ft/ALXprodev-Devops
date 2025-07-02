@@ -12,3 +12,4 @@ jq -r '
   "\($name) is of type \($type), weighs \($formatted_weight)kg, and is \($formatted_height)m tall."
 ' data.json
 
+# "$name is of type $type, weighs ${formatted_weight}kg, and is ${formatted_height}m tall."

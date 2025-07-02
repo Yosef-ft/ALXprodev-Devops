@@ -24,11 +24,21 @@ fetch_pokemon() {
     echo "[$(date)] Failed to fetch data for ${name} after ${max_retries} attempts" >> errors.log
 }
 
+pids=()
 
 for pokemon in "${pokemon_list[@]}"; do
     fetch_pokemon "$pokemon" &
+    pid=$!
+    pids+=($pid)
 done
 
-wait
+
+echo "Running background jobs:"
+jobs
+
+for pid in "${pids[@]}"; do
+    wait "$pid"
+done
+# kill
 
 echo "All downloads completed."

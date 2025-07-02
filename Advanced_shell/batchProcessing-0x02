@@ -4,6 +4,7 @@ pokemon_list=("bulbasaur" "ivysaur" "venusaur" "charmander" "charmeleon")
 api_url="https://pokeapi.co/api/v2/pokemon"
 
 delay=2
+max_retries=3
 
 for pokemon in "${pokemon_list[@]}"; do
 

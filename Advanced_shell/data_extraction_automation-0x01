@@ -1,0 +1,14 @@
+#!/bin/bash
+
+jq -r '
+  .name as $name |
+  .height as $height |
+  .weight as $weight |
+  .types[0].type.name as $type |
+  ($name | ascii_upcase[0:1] + .[1:]) as $cap_name |
+  ($type | ascii_upcase[0:1] + .[1:]) as $cap_type |
+  ($height / 10) as $meters |
+  ($weight / 10) as $kg |
+  "\($cap_name) is of type \($cap_type), weighs \($kg)kg, and is \($meters)m tall."
+' data.json
+

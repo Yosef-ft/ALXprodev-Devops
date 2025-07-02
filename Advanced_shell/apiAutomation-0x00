@@ -1,0 +1,14 @@
+#!/bin/bash
+API_URL="https://pokeapi.co/api/v2/pokemon/pikachu"
+
+curl -s -f "$API_URL" > data.json 2> errors.txt || {
+    echo "[$(date)] Failed to fetch data" >> errors.txt
+    exit 1
+}
+
+if [ ! -s data.json ]; then
+    echo "[$(date)] Received empty response from API" >> errors.txt
+    exit 1
+fi
+
+echo "Successfully saved Pikachu data to data.json"

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+pokemon_list=("bulbasaur" "ivysaur" "venusaur" "charmander" "charmeleon")
+api_url="https://pokeapi.co/api/v2/pokemon"
+
+delay=2
+
+for pokemon in "${pokemon_list[@]}"; do
+
+    curl -s -f "${api_url}/${pokemon}" > "${pokemon}.json" 2>> errors.log
+    
+    if [ $? -ne 0 ]; then
+        echo "[$(date)] Failed to fetch data for ${pokemon}" >> errors.log
+    else
+        echo "Successfully saved ${pokemon}.json"
+    fi
+    
+    sleep $delay
+done
